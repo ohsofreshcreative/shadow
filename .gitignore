@@ -1,0 +1,25 @@
+deploy/
+
+# Node modules
+node_modules/
+
+# Composer dependencies
+vendor/
+
+# Vite public build
+public/
+
+# Mac system files
+.DS_Store
+
+# Env files
+.env
+.env.*
+
+# Logi
+*.log
+
+# Editor & OS clutter
+.idea/
+.vscode/
+*.swp

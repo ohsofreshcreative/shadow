@@ -8,7 +8,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 class ExampleBlock extends Block
 {
 	public $name = 'Example';
-	public $description = 'Przykładowy blok ACF';
+	public $description = 'Przykładowy blok ACF2';
 	public $category = 'formatting';
 	public $icon = 'smiley';
 	public $keywords = ['example', 'demo'];
@@ -30,7 +30,7 @@ class ExampleBlock extends Block
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Zaawansowane opcje',
+				'label' => 'Zaawansowane opcje2',
 				'open' => false,
 				'multi_expand' => true,
 			])

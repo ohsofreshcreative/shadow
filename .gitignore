@@ -1,25 +1,38 @@
-deploy/
-
-# Node modules
+# === Node.js & Vite ===
 node_modules/
+public/build/
+public/hot
+*.log
 
-# Composer dependencies
+# === Composer ===
 vendor/
 
-# Vite public build
-public/
+# === Laravel/Sage storage (jeśli dotyczy) ===
+storage/
+storage/logs/
+storage/framework/
 
-# Mac system files
-.DS_Store
+# === LocalWP (ważne!) ===
+.local
+.localwp
+run/
+*.sock
+*.pid
+*.pid.lock
 
-# Env files
+# === Deployment pliki pomocnicze ===
+deploy/
+
+# === Env ===
 .env
 .env.*
 
-# Logi
-*.log
-
-# Editor & OS clutter
+# === System & edytory ===
+.DS_Store
+*.swp
+*.swo
 .idea/
 .vscode/
-*.swp
+
+# === Git ===
+.gitkeep

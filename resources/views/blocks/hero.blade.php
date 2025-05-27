@@ -11,7 +11,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 	<h2 data-gsap-element="header" class="pt-26 w-2/3 text-2xl font-bold">{{ $hero['title'] }}</h2>
 
 	<div data-gsap-element="header" class="mt-2 prose">
-		{!! $hero['content'] !!}
+		{!! $hero['content'] !!}2
 	</div>
 
 	@if (!empty($hero['cta']))

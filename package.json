@@ -21,12 +21,13 @@
     "autoprefixer": "^10.4.21",
     "laravel-vite-plugin": "^1.2.0",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.6",
+    "tailwindcss": "^4.1.7",
     "vite": "^6.3.5"
   },
   "dependencies": {
     "alpinejs": "^3.14.9",
     "gsap": "^3.13.0",
+    "jquery": "^3.7.1",
     "swiper": "^11.2.6"
   }
 }

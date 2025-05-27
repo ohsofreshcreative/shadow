@@ -49,6 +49,42 @@ Application::configure()
 |
 */
 
+/*--- HIDE ALL BLOCKS ---*/
+
+function allow_only_selected_blocks( $allowed_block_types, $editor_context ) {
+    if ( ! empty( $editor_context->post ) ) {
+        // Pobierz wszystkie zarejestrowane bloki
+        $all_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
+
+        $allowed_blocks = [];
+
+        foreach ( $all_blocks as $block_name => $block ) {
+            // Dopuszczone kategorie
+            if ( isset( $block->category ) && in_array( $block->category, ['formatting', '_media', '_con', '_tekst'], true ) ) {
+                $allowed_blocks[] = $block_name;
+            }
+
+            // Dopuszczamy też wszystkie bloki ACF (prefix "acf/")
+            if ( strpos( $block_name, 'acf/' ) === 0 ) {
+                $allowed_blocks[] = $block_name;
+            }
+        }
+
+        // Dodatkowo dopuszczamy akapit i nagłówek
+        $allowed_blocks[] = 'core/paragraph';
+        $allowed_blocks[] = 'core/heading';
+
+        return $allowed_blocks;
+    }
+
+    return [];
+}
+
+add_filter( 'allowed_block_types_all', 'allow_only_selected_blocks', 10, 2 );
+
+
+
+
 collect(['setup', 'filters'])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {
@@ -60,7 +96,10 @@ collect(['setup', 'filters'])
     });
 
 
+/*--- PROJECT BLOCKS ---*/
 
 add_filter('sage/acf-composer/fields', fn () => [
     App\Blocks\ExampleBlock::class,
 ]);
+
+

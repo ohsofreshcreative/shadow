@@ -12,17 +12,16 @@
 		<a data-gsap-element="header" class="main-btn" href="{{ $cta['url'] }}" target="{{ $cta['target'] }}">{{ $cta['title'] }}</a>
 	@endif
 
-	<div class="swiper">
+<!-- 	<div class="swiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide">Slide 1</div>
     <div class="swiper-slide">Slide 2</div>
     <div class="swiper-slide">Slide 3</div>
   </div>
 
-  <!-- Pagination i nawigacja (opcjonalnie) -->
   <div class="swiper-pagination"></div>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
-</div>
+</div> -->
 
 </section>

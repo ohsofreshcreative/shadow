@@ -5,14 +5,15 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class ExampleBlock extends Block
+class Hero extends Block
 {
-	public $name = 'Example';
-	public $description = 'Przykładowy blok ACF2';
+	public $name = 'Sekcja Hero';
+	public $description = 'Sekcja Hero';
+	public $slug = 'hero';
 	public $category = 'formatting';
-	public $icon = 'smiley';
-	public $keywords = ['example', 'demo'];
-	public $mode = 'edit'; // lub 'preview'
+	public $icon = 'align-full-width';
+	public $keywords = ['tresc', 'zdjecie'];
+	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
@@ -21,19 +22,21 @@ class ExampleBlock extends Block
 
 	public function fields()
 	{
-		$example = new FieldsBuilder('example');
+		$hero = new FieldsBuilder('hero');
 
-		$example
-			->setLocation('block', '==', 'acf/example') // ważne!
+		$hero
+			->setLocation('block', '==', 'acf/hero') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Zaawansowane opcje2',
+				'label' => 'Hero',
 				'open' => false,
 				'multi_expand' => true,
 			])
+			->addTab('Treść', ['placement' => 'top']) 
+			->addGroup('hero', ['label' => 'Hero'])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
@@ -49,18 +52,27 @@ class ExampleBlock extends Block
 			->addLink('cta', [
 				'label' => 'Przycisk',
 				'return_format' => 'array',
+			])
+
+			->endGroup()
+
+			->addTab('Ustawienia bloku', ['placement' => 'top']) 
+
+			->addTrueFalse('flip', [
+				'label' => 'Odwrotna kolejność',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
 			]);
 
-		return $example;
+		return $hero;
 	}
 
 	public function with()
 	{
 		return [
-			'image' => get_field('image'),
-			'title' => get_field('title'),
-			'content' => get_field('content'),
-			'cta' => get_field('cta'),
+			'hero' => get_field('hero'),
+			'flip' => get_field('flip'),
 		];
 	}
 }

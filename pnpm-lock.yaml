@@ -14,6 +14,9 @@ importers:
       gsap:
         specifier: ^3.13.0
         version: 3.13.0
+      jquery:
+        specifier: ^3.7.1
+        version: 3.7.1
       swiper:
         specifier: ^11.2.6
         version: 11.2.8
@@ -34,7 +37,7 @@ importers:
         specifier: ^8.5.3
         version: 8.5.3
       tailwindcss:
-        specifier: ^4.1.6
+        specifier: ^4.1.7
         version: 4.1.7
       vite:
         specifier: ^6.3.5
@@ -633,6 +636,9 @@ packages:
   jiti@2.4.2:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
     hasBin: true
+
+  jquery@3.7.1:
+    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
 
   json-parse-even-better-errors@2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
@@ -1417,6 +1423,8 @@ snapshots:
       supports-color: 8.1.1
 
   jiti@2.4.2: {}
+
+  jquery@3.7.1: {}
 
   json-parse-even-better-errors@2.3.1: {}
 

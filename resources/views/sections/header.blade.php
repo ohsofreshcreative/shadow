@@ -4,7 +4,7 @@
 	<div class="c-main hidden md:flex items-center justify-between h-full p-4 mx-auto">
 		<a class="brand shrink-0" href="{{ home_url('/') }}">
 			@if ($logo)
-			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="h-10 w-auto">
+			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto">
 			@else
 			<span class="text-xl font-bold">{{ $siteName }}</span>
 			@endif

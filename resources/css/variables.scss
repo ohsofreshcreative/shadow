@@ -61,7 +61,7 @@
 }
 
 ::selection {
-    background: var(--p-300);
+    background: var(--p-600);
     color: #fff;
 }
 /* 
@@ -78,33 +78,43 @@
 } */
 
 :root {
-    --body: #0b0c10 !important;
-    --primary: #ea6730;
-    --p-hover: #9c4520;
-    --p-100: #fbe0d6;
-    --p-200: #f8ccba;
-    --p-300: #f4b397;
-    --p-500: #ed8052;
-    --p-700: #9c4520;
-    --p-900: #4e2210;
-    --p-dark: #2f150a;
+    --body: #1B1B1B !important;
+    --primary: #52F9AD;
+    --p-hover: #44CF90;
+    --p-100: #DCFEEF;
+    --p-200: #C5FDE4;
+    --p-300: #A8FCD6;
+    --p-400: #8CFBC8;
+    --p-500: #6FFABB;
+    --p-600: #44CF90;
+    --p-700: #37A673;
+    --p-800: #297C56;
+    --p-900: #1B533A;
+    --p-dark: #103223;
 
-    --secondary: #213243;
-    --s-hover: #1e2f3e;
-    --s-100: #cfdce8;
-    --s-200: #b4c5d4;
-    --s-300: #96a9b9;
-    --s-500: #607b91;
-    --s-700: #1e2f3e;
-    --s-900: #0f181f;
-    --s-dark: #090e13;
+    --secondary: #292929;
+    --s-hover: #222222;
+    --s-100: #D4D4D4;
+    --s-200: #B8B8B8;
+    --s-300: #949494;
+    --s-400: #707070;
+    --s-500: #4D4D4D;
+    --s-600: #222222;
+    --s-700: #1B1B1B;
+    --s-800: #141414;
+    --s-900: #0E0E0E;
+    --s-dark: #080808;
 
     --gray: #809fb7;
-    --bg: #eff7ff;
-    --bg-light: #fffbf8;
+    --bg: #F7FFFC;
+    --bg-light: #E5FFF3;
+    --bg-lighter: #ECFFF6;
 
-    --header: "Sora", sans-serif;
-    --txt: "Poppins", sans-serif;
+	--border: var(--p-300);
+	--border-light: var(--p-200);
+
+    --header: "Poppins", sans-serif;
+    --txt: "Manrope", sans-serif;
     --btns-font: "Poppins", sans-serif;
 
     --smt: 104px;
@@ -123,8 +133,8 @@
     --img-margin: 24px;
     --radius: 32px;
 
-    --btns-fontsize: 13px;
-    --btns-radius: 16px;
+    --btns-fontsize: 14px;
+    --btns-radius: 4px;
     --btns-padding: 16px 40px;
 
 	--footer-py: 104px 0;
@@ -136,20 +146,15 @@
 /*--- !CONTAINERS ---*/
 
 .c-main {
-    max-width: 1424px !important;
+    max-width: 1328px !important;
     margin: 0 auto;
     padding-left: 24px !important;
     padding-right: 24px !important;
     width: 100%;
 }
 
-.c-main-wider {
-    max-width: 1480px !important;
-    margin: 0 auto;
-}
-
 .c-main-wide {
-    max-width: 1550px !important;
+    max-width: 1456px !important;
     margin: 0 auto;
     padding-left: 24px !important;
     padding-right: 24px !important;
@@ -310,7 +315,7 @@ h4,
 h5,
 h6 {
     font-family: var(--header);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--body);
 }
 
@@ -321,12 +326,12 @@ p.big {
 
 h1,
 .text-h1 {
-    font-size: 42px !important;
+    font-size: 60px !important;
 }
 
 h2,
 .text-h2 {
-    font-size: 36px !important;
+    font-size: 48px !important;
 }
 
 h3,
@@ -368,7 +373,7 @@ h6,
     font-family: var(--btns-font);
     font-size: var(--btns-fontsize);
     background: var(--primary);
-    color: #fff;
+    color: var(--body);
     padding: var(--btns-padding);
     display: inline-block;
     transition: all 0.2s ease-out;
@@ -377,6 +382,7 @@ h6,
     border-radius: var(--btns-radius);
     text-decoration: none;
     white-space: nowrap;
+	width: max-content;
 }
 
 .main-btn:hover {
@@ -399,6 +405,7 @@ h6,
     border-radius: var(--btns-radius);
     text-decoration: none;
     white-space: nowrap;
+	width: max-content;
 }
 
 .second-btn:hover {
@@ -420,6 +427,7 @@ h6,
     border-radius: var(--btns-radius);
     text-decoration: none;
     white-space: nowrap;
+	width: max-content;
 }
 
 .dark-btn:hover {
@@ -442,6 +450,7 @@ h6,
     border-radius: var(--btns-radius);
     text-decoration: none;
     white-space: nowrap;
+	width: max-content;
 }
 
 .white-btn:hover {
@@ -464,6 +473,7 @@ h6,
     border-radius: var(--btns-radius);
     text-decoration: none;
     white-space: nowrap;
+	width: max-content;
 }
 
 .stroke-btn:hover {
@@ -491,6 +501,7 @@ h6,
     text-decoration: none;
     white-space: nowrap;
     border-bottom: 1px solid var(--primary);
+	width: max-content;
 }
 
 .underline-btn::after {
@@ -678,4 +689,9 @@ h6,
     footer h2.widget-title {
         margin-bottom: 0px !important;
     }
+}
+
+
+[x-cloak] {
+  display: none !important;
 }

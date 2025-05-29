@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class HomeAbout extends Block
+class TwoColumns extends Block
 {
-	public $name = 'Strona główna - O nas';
-	public $description = 'home-about';
-	public $slug = 'home-about';
+	public $name = 'Dwie kolumny';
+	public $description = 'TwoColumns';
+	public $slug = 'twocolumns';
 	public $category = 'formatting';
-	public $icon = 'screenoptions';
-	public $keywords = ['O nas', 'Strona glowna'];
+	public $icon = 'columns';
+	public $keywords = ['twocolumns'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,28 +22,63 @@ class HomeAbout extends Block
 
 	public function fields()
 	{
-		$home_about = new FieldsBuilder('home-about');
+		$twocolumns = new FieldsBuilder('twocolumns');
 
-		$home_about
-			->setLocation('block', '==', 'acf/home-about') // ważne!
+		$twocolumns
+			->setLocation('block', '==', 'acf/twocolumns') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Strona główna - O nas',
+				'label' => 'Dwie kolumny',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GRUPA #1 ---*/
-			->addTab('Sekcja 1', ['placement' => 'top'])
-			->addGroup('about1', ['label' => ''])
+			/*--- FIELDS ---*/
+			->addTab('Kolumna #1', ['placement' => 'top'])
+			->addGroup('col1', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
 			->addText('title', ['label' => 'Tytuł'])
+			->addTextarea('text', [
+				'label' => 'Opis',
+				'rows' => 4,
+				'placeholder' => 'Wpisz opis...',
+				'new_lines' => 'br',
+			])
+			->addText('subtitle', ['label' => 'Śródtytuł'])
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
+			])
+			->endGroup()
+
+			/*--- GRUPA #2 ---*/
+			->addTab('Kolumna #2', ['placement' => 'top'])
+			->addGroup('col2', ['label' => ''])
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
+			->addText('title', ['label' => 'Tytuł'])
+			->addTextarea('text', [
+				'label' => 'Opis',
+				'rows' => 4,
+				'placeholder' => 'Wpisz opis...',
+				'new_lines' => 'br',
+			])
+			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addWysiwyg('content', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
@@ -52,28 +87,6 @@ class HomeAbout extends Block
 				'wpautop' => false,
 			])
 			->addLink('cta', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
-			])
-			->endGroup()
-
-			/*--- GRUPA #2 ---*/
-			->addTab('Sekcja 2', ['placement' => 'top'])
-			->addGroup('about2', ['label' => ''])
-			->addImage('image2', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('title2', ['label' => 'Tytuł'])
-			->addWysiwyg('content2', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-				'wpautop' => false,
-			])
-			->addLink('cta2', [
 				'label' => 'Przycisk',
 				'return_format' => 'array',
 			])
@@ -91,14 +104,14 @@ class HomeAbout extends Block
 
 
 
-		return $home_about;
+		return $twocolumns;
 	}
 
 	public function with()
 	{
 		return [
-			'about1' => get_field('about1'),
-			'about2' => get_field('about2'),
+			'col1' => get_field('col1'),
+			'col2' => get_field('col2'),
 			'flip' => get_field('flip'),
 		];
 	}

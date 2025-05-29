@@ -65,6 +65,7 @@ class ThemeServiceProvider extends SageServiceProvider
 				\App\Blocks\TextImage::class,
 				\App\Blocks\Hero::class,
 				\App\Blocks\HomeAbout::class,
+				\App\Blocks\Cards::class,
 			];
 		});
 	}

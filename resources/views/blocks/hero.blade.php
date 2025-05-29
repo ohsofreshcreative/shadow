@@ -3,19 +3,19 @@ $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
 @endphp
 
-<section data-gsap-anim="section" class="example-block c-main {{ $sectionClass }}">
+<section data-gsap-anim="section" class="c-main {{ $sectionClass }}">
 	@if (!empty($hero['image']))
-	<img data-gsap-element="header" src="{{ $hero['image']['url'] }}" alt="{{ $hero['image']['alt'] ?? '' }}" class="mb-4 my-element">
+	<img data-gsap-element="image" src="{{ $hero['image']['url'] }}" alt="{{ $hero['image']['alt'] ?? '' }}" class="mb-4 my-element">
 	@endif
 
 	<h2 data-gsap-element="header" class="pt-26 w-2/3 text-2xl font-bold">{{ $hero['title'] }}</h2>
 
-	<div data-gsap-element="header" class="mt-2 prose">
-		{!! $hero['content'] !!}2
+	<div data-gsap-element="content" class="mt-2 __content">
+		{!! $hero['content'] !!}
 	</div>
 
 	@if (!empty($hero['cta']))
-	<a data-gsap-element="header" class="main-btn" href="{{ $hero['cta']['url'] }}" target="{{ $hero['cta']['target'] }}">{{ $hero['cta']['title'] }}</a>
+	<a data-gsap-element="button" class="main-btn" href="{{ $hero['cta']['url'] }}" target="{{ $hero['cta']['target'] }}">{{ $hero['cta']['title'] }}</a>
 	@endif
 
 	<!-- 	<div class="swiper">

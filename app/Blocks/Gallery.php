@@ -5,63 +5,51 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Gallery extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Galeria';
+	public $description = 'gallery';
+	public $slug = 'gallery';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'format-gallery';
+	public $keywords = ['gallery', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$gallery = new FieldsBuilder('gallery');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$gallery
+			->setLocation('block', '==', 'acf/gallery') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Galeria',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- FIELDS ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
+			->addTab('Galeria', ['placement' => 'top'])
+			->addGroup('group1', ['label' => ''])
 
 			->addText('title', ['label' => 'Tytuł'])
 
-			->addRepeater('repeater', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'max' => 4,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
+			->addGallery('gallery', [
+				'label' => 'Galeria',
 				'preview_size' => 'medium',
+				'library' => 'all',
+				'min' => 1,
+				'max' => 10,
 			])
-			->addText('card_title', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('card_txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
-			])
-			->endRepeater()
 
 			->endGroup()
 
@@ -87,14 +75,13 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $gallery;
 	}
 
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
-			'about2' => get_field('about2'),
+			'group1' => get_field('group1'),
 			'flip' => get_field('flip'),
 			'lightbg' => get_field('lightbg'),
 			'nomt' => get_field('nomt'),

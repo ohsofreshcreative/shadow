@@ -1,7 +1,7 @@
-<header x-data="{ mobileOpen: false }" class="masthead fixed-top top-0 bg-white shadow-md relative z-50">
+<header x-data="{ mobileOpen: false }" class="relative top-0 z-50 bg-white shadow-md masthead fixed-top">
 
 	<!-- Desktop Header -->
-	<div class="c-main hidden md:flex items-center justify-between h-full p-4 mx-auto">
+	<div class="items-center justify-between hidden h-full p-4 mx-auto c-main md:flex">
 		<a class="brand shrink-0" href="{{ home_url('/') }}">
 			@if ($logo)
 			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto">
@@ -10,7 +10,7 @@
 			@endif
 		</a>
 		@if (has_nav_menu('primary_navigation'))
-		<nav class="nav-primary ml-6" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
+		<nav class="ml-6 nav-primary" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
 			{!! wp_nav_menu([
 			'theme_location' => 'primary_navigation',
 			'menu_class' => 'nav flex gap-x-5 lg:gap-x-8 text-sm font-medium items-center',
@@ -22,24 +22,24 @@
 	</div>
 
 	<!-- Mobile Header Bar -->
-	<div class="mobile-menu fixed-top md:hidden flex items-center justify-between p-4">
+	<div class="flex items-center justify-between p-4 mobile-menu fixed-top md:hidden">
 		<a class="brand shrink-0" href="{{ home_url('/') }}">
 			@if ($logo)
-			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="h-8 w-auto">
+			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-8">
 			@else
 			<span class="text-lg font-bold">{{ $siteName }}</span>
 			@endif
 		</a>
 		<button
 			@click.stop="mobileOpen = !mobileOpen"
-			class="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+			class="p-2 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 			aria-expanded="mobileOpen"
 			aria-controls="mobile-menu-panel">
 			<span class="sr-only">Otwórz menu główne</span>
-			<svg x-show="!mobileOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+			<svg x-show="!mobileOpen" class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 			</svg>
-			<svg x-show="mobileOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" style="display: none;">
+			<svg x-show="mobileOpen" class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" style="display: none;">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
 			</svg>
 		</button>
@@ -64,9 +64,9 @@
 				<span class="text-lg font-semibold">Menu</span>
 				<button
 					@click="mobileOpen = false"
-					class="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+					class="p-2 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
 					<span class="sr-only">Zamknij menu</span>
-					<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+					<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
 					</svg>
 				</button>
@@ -83,8 +83,8 @@
 			</nav>
 			@endif
 
-			<div class="mt-8 pt-6 border-t border-gray-200">
-				<a href="/kontakt/" class="block w-full px-4 py-3 text-center text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow">
+			<div class="pt-6 mt-8 border-t border-gray-200">
+				<a href="/kontakt/" class="block w-full px-4 py-3 text-base font-medium text-center text-white bg-indigo-600 shadow hover:bg-indigo-700 rounded-md">
 					Umów konsultację
 				</a>
 			</div>

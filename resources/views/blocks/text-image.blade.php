@@ -1,27 +1,34 @@
-<section data-gsap-anim="section" class="example-block c-main">
-	@if ($image)
-	<img data-gsap-element="header" src="{{ $image['url'] }}" alt="{{ $image['alt'] ?? '' }}" class="mb-4 my-element">
-	@endif
+@php
+$sectionClass = '';
+$sectionClass .= $flip ? ' order-flip' : '';
+$sectionClass .= $lightbg ? ' section-light' : '';
+$sectionClass .= $whitebg ? ' section-white' : '';
+$sectionClass .= $nomt ? ' !mt-0' : '';
 
-	<h2 data-gsap-element="header" class="text-2xl font-bold">{{ $title }}</h2>
+$sectionId = $block->data['id'] ?? null;
+$customClass = $block->data['className'] ?? '';
+@endphp
 
-	<div data-gsap-element="header" class="mt-2 prose">
-		{!! $content !!}
+<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="text-image -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+
+	<div class="__wrapper c-main">
+		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+			@if (!empty($textimg['image']))
+			<img class="object-cover w-full __img img-xl order1" src="{{ $textimg['image']['url'] }}" alt="{{ $textimg['image']['alt'] ?? '' }}">
+			@endif
+
+			<div class="__content order2">
+				<h2 data-gsap-element="header" class="">{{ $textimg['title'] }}</h2>
+
+				<div data-gsap-element="header" class="mt-2">
+					{!! $textimg['content'] !!}
+				</div>
+				@if (!empty($textimg['button']))
+				<a class="main-btn m-btn" href="{{ $textimg['button']['url'] }}">{{ $textimg['button']['title'] }}</a>
+				@endif
+			</div>
+
+		</div>
 	</div>
-	@if ($cta)
-		<a data-gsap-element="header" class="main-btn" href="{{ $cta['url'] }}" target="{{ $cta['target'] }}">{{ $cta['title'] }}</a>
-	@endif
-
-<!-- 	<div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">Slide 1</div>
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
-  </div>
-
-  <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-</div> -->
 
 </section>

@@ -5,42 +5,54 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Tiles extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Tekst + Kafelki';
+	public $description = 'tiles';
+	public $slug = 'tiles';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'align-pull-right';
+	public $keywords = ['tiles', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$tiles = new FieldsBuilder('tiles');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$tiles
+			->setLocation('block', '==', 'acf/tiles') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Tekst + kafelki',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
+
+			/*--- TAB #1 ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('tiles', ['label' => ''])
-
 			->addText('title', ['label' => 'Tytuł'])
+			->addText('subtitle', ['label' => 'Śródtytuł'])
+			->addTextarea('text', [
+				'label' => 'Opis',
+				'rows' => 4,
+				'placeholder' => 'Wpisz opis...',
+				'new_lines' => 'br',
+			])
+			->endGroup()
 
+			/*--- TAB #2 ---*/
+			->addTab('Kafelki', ['placement' => 'top'])
 			->addRepeater('repeater', [
 				'label' => 'Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
@@ -58,12 +70,8 @@ class Cards extends Block
 			])
 			->addTextarea('card_txt', [
 				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
 			])
 			->endRepeater()
-
-			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -80,6 +88,12 @@ class Cards extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
+			->addTrueFalse('whitebg', [
+				'label' => 'Białe tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('nomt', [
 				'label' => 'Usunięcie marginesu górnego',
 				'ui' => 1,
@@ -87,16 +101,17 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $tiles;
 	}
 
 	public function with()
 	{
 		return [
 			'tiles' => get_field('tiles'),
-			'about2' => get_field('about2'),
+			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
 			'lightbg' => get_field('lightbg'),
+			'whitebg' => get_field('whitebg'),
 			'nomt' => get_field('nomt'),
 		];
 	}

@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Works extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Realizacje - Slider';
+	public $description = 'works';
+	public $slug = 'works';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'format-gallery';
+	public $keywords = ['works', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,16 +22,16 @@ class Cards extends Block
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$works = new FieldsBuilder('works');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$works
+			->setLocation('block', '==', 'acf/works') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Realizacje - Galeria',
 				'open' => false,
 				'multi_expand' => true,
 			])
@@ -42,7 +42,7 @@ class Cards extends Block
 			->addText('title', ['label' => 'Tytuł'])
 
 			->addRepeater('repeater', [
-				'label' => 'Kafelki',
+				'label' => 'Slider',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
 				'max' => 4,
@@ -58,8 +58,6 @@ class Cards extends Block
 			])
 			->addTextarea('card_txt', [
 				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
 			])
 			->endRepeater()
 
@@ -73,21 +71,11 @@ class Cards extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('lightbg', [
-				'label' => 'Jasne tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('nomt', [
-				'label' => 'Usunięcie marginesu górnego',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+
+
+		return $works;
 	}
 
 	public function with()
@@ -96,8 +84,6 @@ class Cards extends Block
 			'tiles' => get_field('tiles'),
 			'about2' => get_field('about2'),
 			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
-			'nomt' => get_field('nomt'),
 		];
 	}
 }

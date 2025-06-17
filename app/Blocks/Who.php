@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Who extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Dla kogo';
+	public $description = 'who';
+	public $slug = 'who';
 	public $category = 'formatting';
 	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $keywords = ['who', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,10 +22,10 @@ class Cards extends Block
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$who = new FieldsBuilder('who');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$who
+			->setLocation('block', '==', 'acf/who') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
@@ -37,7 +37,7 @@ class Cards extends Block
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
+			->addGroup('who', ['label' => ''])
 
 			->addText('title', ['label' => 'Tytuł'])
 
@@ -58,8 +58,6 @@ class Cards extends Block
 			])
 			->addTextarea('card_txt', [
 				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
 			])
 			->endRepeater()
 
@@ -87,14 +85,13 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $who;
 	}
 
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
-			'about2' => get_field('about2'),
+			'who' => get_field('who'),
 			'flip' => get_field('flip'),
 			'lightbg' => get_field('lightbg'),
 			'nomt' => get_field('nomt'),

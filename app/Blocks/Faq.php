@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class TextImage extends Block
+class Faq extends Block
 {
-	public $name = 'Treść oraz zdjęcie';
-	public $description = 'Treść oraz zdjęcie';
-	public $slug = 'text-image';
+	public $name = 'Najczęściej zadawane pytania';
+	public $description = 'Faq';
+	public $slug = 'faq';
 	public $category = 'formatting';
-	public $icon = 'align-pull-left';
-	public $keywords = ['tresc', 'zdjecie'];
+	public $icon = 'feedback';
+	public $keywords = ['faq'];
 	public $mode = 'edit'; 
 	public $supports = [
 		'align' => false,
@@ -24,27 +24,22 @@ class TextImage extends Block
 
 	public function fields()
 	{
-		$text_image = new FieldsBuilder('text-image');
+		$faq = new FieldsBuilder('faq');
 
-		$text_image
-			->setLocation('block', '==', 'acf/text-image') // ważne!
+		$faq
+			->setLocation('block', '==', 'acf/faq') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Treść oraz zdjęcie',
+				'label' => 'Najczęściej zadawane pytania',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GROUP ---*/
+			/*--- TAB #1 ---*/
 			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('textimg', ['label' => ''])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
+			->addGroup('faq', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
 			->addWysiwyg('content', [
 				'label' => 'Treść',
@@ -58,6 +53,23 @@ class TextImage extends Block
 			])
 			->endGroup()
 
+			/*--- TAB #2 ---*/
+			->addTab('FAQ', ['placement' => 'top'])
+			->addRepeater('repeater', [
+				'label' => 'FAQ',
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 1,
+				'max' => 4,
+				'button_label' => 'Dodaj pytanie'
+			])
+			->addText('title', [
+				'label' => 'Pytanie',
+			])
+			->addTextarea('txt', [
+				'label' => 'Odpowiedź',
+			])
+			->endRepeater()
+
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
@@ -66,37 +78,17 @@ class TextImage extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('lightbg', [
-				'label' => 'Jasne tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('whitebg', [
-				'label' => 'Białe tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('nomt', [
-				'label' => 'Usunięcie marginesu górnego',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
 			]);
 
-		return $text_image;
+		return $faq;
 	}
 
 	public function with()
 	{
 		return [
-			'textimg' => get_field('textimg'),
+			'faq' => get_field('faq'),
+			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
-			'whitebg' => get_field('whitebg'),
-			'nomt' => get_field('nomt'),
 		];
 	}
 }

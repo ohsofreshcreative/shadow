@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Slides extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Slider - Kafelki';
+	public $description = 'slides';
+	public $slug = 'slides';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'image-flip-horizontal';
+	public $keywords = ['slides', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,30 +22,30 @@ class Cards extends Block
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$slides = new FieldsBuilder('slides');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$slides
+			->setLocation('block', '==', 'acf/slides') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Slider - Kafelki',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
+			->addGroup('g_slides', ['label' => ''])
 
 			->addText('title', ['label' => 'Tytuł'])
 
 			->addRepeater('repeater', [
-				'label' => 'Kafelki',
+				'label' => 'Slider - Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
-				'max' => 4,
+				'max' => 10,
 				'button_label' => 'Dodaj kafelek'
 			])
 			->addImage('card_image', [
@@ -60,6 +60,10 @@ class Cards extends Block
 				'label' => 'Opis',
 				'rows' => 4,
 				'new_lines' => 'br',
+			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
 			])
 			->endRepeater()
 
@@ -87,14 +91,14 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $slides;
 	}
 
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
-			'about2' => get_field('about2'),
+			'g_slides' => get_field('g_slides'),
+			'slides' => get_field('g_slides')['repeater'] ?? [],
 			'flip' => get_field('flip'),
 			'lightbg' => get_field('lightbg'),
 			'nomt' => get_field('nomt'),

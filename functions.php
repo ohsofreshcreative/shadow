@@ -73,6 +73,7 @@ function allow_only_selected_blocks( $allowed_block_types, $editor_context ) {
         // Dodatkowo dopuszczamy akapit i nagłówek
         $allowed_blocks[] = 'core/paragraph';
         $allowed_blocks[] = 'core/heading';
+        $allowed_blocks[] = 'core/list';
 
         return $allowed_blocks;
     }

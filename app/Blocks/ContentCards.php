@@ -5,38 +5,57 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class ContentCards extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Treść + Kafelki';
+	public $description = 'content-cards';
+	public $slug = 'content-cards';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'table-row-before';
+	public $keywords = ['content-cards', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$content_cards = new FieldsBuilder('content-cards');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$content_cards
+			->setLocation('block', '==', 'acf/content-cards') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Treść + Kafelki',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
-			->addTab('Treści', ['placement' => 'top'])
+			/*--- TAB #1 ---*/
+			->addTab('Treść', ['placement' => 'top'])
+			->addGroup('textimg', ['label' => ''])
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
+			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+				'rows' => 4,
+			])
+			->endGroup()
+			/*--- TAB #2 ---*/
+			->addTab('Kafelki', ['placement' => 'top'])
 			->addGroup('tiles', ['label' => ''])
 
 			->addText('title', ['label' => 'Tytuł'])
@@ -58,8 +77,6 @@ class Cards extends Block
 			])
 			->addTextarea('card_txt', [
 				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
 			])
 			->endRepeater()
 
@@ -80,24 +97,24 @@ class Cards extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('nomt', [
-				'label' => 'Usunięcie marginesu górnego',
+			->addTrueFalse('whitebg', [
+				'label' => 'Białe tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $content_cards;
 	}
 
 	public function with()
 	{
 		return [
+			'textimg' => get_field('textimg'),
 			'tiles' => get_field('tiles'),
-			'about2' => get_field('about2'),
 			'flip' => get_field('flip'),
 			'lightbg' => get_field('lightbg'),
-			'nomt' => get_field('nomt'),
+			'whitebg' => get_field('whitebg'),
 		];
 	}
 }

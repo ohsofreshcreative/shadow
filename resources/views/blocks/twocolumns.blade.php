@@ -8,10 +8,10 @@ $sectionClass .= $flip ? ' order-flip' : '';
 		<div class="__first">
 
 			<img class="m-img" src="{{ $col1['image']['url'] }}" alt="{{ $col1['image']['alt'] ?? '' }}">
-			<h3 class="primary mt-5">{{ $col1['title'] }}</h3>
+			<h3 class="mt-5 primary">{{ $col1['title'] }}</h3>
 			<p>{{ $col1['text'] }}</p>
 			<h5 class="mt-5">{{ $col1['subtitle'] }}</h5>
-			<div class="__content mt-4">{!! $col1['content'] !!}</div>
+			<div class="mt-4 __content">{!! $col1['content'] !!}</div>
 			@if (!empty($col1['button']))
 			<a href="{{ $col1['button']['url'] }}">{{ $col1['button']['title'] }}</a>
 			@endif
@@ -22,7 +22,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 			<h3 class="mt-6">{{ $col2['title'] }}</h3>
 			<p>{{ $col2['text'] }}</p>
 			<h5 class="mt-5">{{ $col2['subtitle'] }}</h5>
-			<div class="__content mt-4">{!! $col2['content'] !!}</div>
+			<div class="mt-4 __content">{!! $col2['content'] !!}</div>
 			@if (!empty($col2['button']))
 			<a href="{{ $col2['button']['url'] }}">{{ $col2['button']['title'] }}</a>
 			@endif

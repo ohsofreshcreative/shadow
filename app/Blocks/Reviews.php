@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Reviews extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Slider - Opinie';
+	public $description = 'reviews';
+	public $slug = 'reviews';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'format-quote';
+	public $keywords = ['reviews', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,30 +22,30 @@ class Cards extends Block
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$reviews = new FieldsBuilder('reviews');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$reviews
+			->setLocation('block', '==', 'acf/reviews') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Slider - Opinie',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
+			->addGroup('g_reviews', ['label' => ''])
 
 			->addText('title', ['label' => 'Tytuł'])
 
 			->addRepeater('repeater', [
-				'label' => 'Kafelki',
+				'label' => 'Slider - Opinie',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
-				'max' => 4,
+				'max' => 15,
 				'button_label' => 'Dodaj kafelek'
 			])
 			->addImage('card_image', [
@@ -53,13 +53,13 @@ class Cards extends Block
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('card_title', [
-				'label' => 'Nagłówek',
-			])
 			->addTextarea('card_txt', [
 				'label' => 'Opis',
 				'rows' => 4,
 				'new_lines' => 'br',
+			])
+			->addText('card_name', [
+				'label' => 'Klient',
 			])
 			->endRepeater()
 
@@ -87,14 +87,14 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $reviews;
 	}
 
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
-			'about2' => get_field('about2'),
+			'g_reviews' => get_field('g_reviews'),
+			'reviews' => get_field('g_reviews')['repeater'] ?? [],
 			'flip' => get_field('flip'),
 			'lightbg' => get_field('lightbg'),
 			'nomt' => get_field('nomt'),

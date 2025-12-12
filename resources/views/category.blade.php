@@ -32,7 +32,7 @@ $backgroundImage = !empty($hero['image'])
 			@endif
 		</div>
 		<a href="#inspiracje">
-			<img data-gsap-element="arrow" class="justify-self-end" src="http://shadowcontrol.local/wp-content/uploads/2025/06/down-arrow.svg" />
+			<img data-gsap-element="arrow" class="justify-self-end" src="/wp-content/uploads/2025/06/down-arrow.svg" />
 		</a>
 	</div>
 </section>

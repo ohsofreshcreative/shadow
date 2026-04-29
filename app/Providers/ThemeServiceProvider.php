@@ -28,16 +28,17 @@ class ThemeServiceProvider extends SageServiceProvider
 
 		// CUSTOM POST TYPE OFERTA
 		add_action('init', function () {
-			register_post_type('offer', [
-				'label' => 'Oferta',
-				'public' => true,
-				'has_archive' => false,
-				'rewrite' => ['slug' => 'oferta'],
-				'supports' => ['title', 'editor', 'thumbnail'],
-				'show_in_rest' => true,
-				'menu_icon' => 'dashicons-list-view',
-			]);
-		});
+    register_post_type('offer', [
+        'label' => 'Oferta',
+        'public' => true,
+        'hierarchical' => true,
+        'has_archive' => false,
+        'rewrite' => ['slug' => 'oferta', 'with_front' => false],
+        'supports' => ['title', 'editor', 'thumbnail', 'page-attributes'],
+        'show_in_rest' => true,
+        'menu_icon' => 'dashicons-list-view',
+    ]);
+});
 
 		if (function_exists('acf_add_options_page')) {
 			acf_add_options_sub_page([
